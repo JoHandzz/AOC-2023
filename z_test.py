@@ -1,42 +1,26 @@
-test =   """
-    0 3 6 9 12 15
-    1 3 6 10 15 21
-    10 13 16 21 30 45
-    """
+# cool trick
+l = ['qwer', 'asdf', 'zxcv']
+# [
+#   'qwer',
+#   'asdf',
+#   'zxcv',
+# ]
 
-l = [[int(num) for num in line.strip().split(' ')] for line in test.splitlines() if line.strip()]
+(list(zip(*l)))
+# [('q', 'a', 'z'), ('w', 's', 'x'), ('e', 'd', 'c'), ('r', 'f', 'v')]
+
+
+a = [1, 5, 3]
+b = [4, 2, 6]
+my_sum = map(lambda x, y: x + y, a, b)
+print(list(my_sum))
+
+biggest = map(lambda x, y: x if x > y else y, a, b)
+print(*biggest)
 
 
 
-def previous_num(lst):
-    def sublist(lst):
-        sublist = []
-        pointer = 0
-        while pointer < len(lst) - 1:
-                sublist.append(lst[pointer + 1] - lst[pointer])
-                pointer += 1
-            
-        return sublist
+big_nums = filter(lambda x: x > 3, a)
+print(list(big_nums))
+
     
-    all_sublists = [lst]
-    while any(x for x in lst):
-        lst = sublist(lst)
-        all_sublists.append(lst)
-    
-    all_sublists = list(reversed(all_sublists))
-    print(all_sublists)
-    
-
-    val = 0
-    for lst in all_sublists:
-        prev_num = lst[0] - val
-        print(prev_num)
-        lst = [prev_num] + lst
-        print(lst)
-        val = lst[0]
-        print(val)
-        
-    return val
-
-
-print(previous_num(l[2]))
